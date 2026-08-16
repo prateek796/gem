@@ -1,0 +1,202 @@
+@import "tailwindcss";
+
+:root {
+  --ink: #0c0b0a;
+  --ink-soft: #161412;
+  --ink-mid: #2a2622;
+  --ivory: #f4efe6;
+  --ivory-deep: #ebe4d6;
+  --parchment: #e2d8c6;
+  --stone: #8a8175;
+  --stone-dark: #5c564c;
+  --champagne: #c4b08a;
+  --champagne-dim: #9a8660;
+  --line: rgb(12 11 10 / 0.1);
+  --line-strong: rgb(12 11 10 / 0.18);
+  --line-light: rgb(244 239 230 / 0.12);
+  --line-light-strong: rgb(244 239 230 / 0.22);
+  --focus: #c4b08a;
+}
+
+@theme inline {
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-ink-mid: var(--ink-mid);
+  --color-ivory: var(--ivory);
+  --color-ivory-deep: var(--ivory-deep);
+  --color-parchment: var(--parchment);
+  --color-stone: var(--stone);
+  --color-stone-dark: var(--stone-dark);
+  --color-champagne: var(--champagne);
+  --color-champagne-dim: var(--champagne-dim);
+  --font-sans: var(--font-geist);
+  --font-display: var(--font-fraunces);
+  --font-mono: var(--font-geist-mono);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  background: var(--ivory);
+  color: var(--ink);
+}
+
+body {
+  font-family: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+  font-feature-settings: "ss01" on, "cv11" on;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--ink);
+  color: var(--ivory);
+}
+
+:focus-visible {
+  outline: 1.5px solid var(--focus);
+  outline-offset: 4px;
+}
+
+.font-display {
+  font-family: var(--font-fraunces), ui-serif, Georgia, serif;
+  font-optical-sizing: auto;
+}
+
+.hairline {
+  border-color: var(--line);
+}
+
+.hairline-light {
+  border-color: var(--line-light);
+}
+
+.rule {
+  height: 1px;
+  background: var(--line);
+}
+
+.rule-gold {
+  height: 1px;
+  width: 3rem;
+  background: var(--champagne);
+}
+
+.caption {
+  font-size: 0.6875rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--stone-dark);
+  font-weight: 500;
+}
+
+.prose-kalpa {
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  color: var(--ink-mid);
+}
+
+.prose-kalpa p + p {
+  margin-top: 1.15em;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  z-index: 80;
+  background: var(--ivory);
+  color: var(--ink);
+  padding: 0.6rem 1rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+@keyframes kalpa-fade {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes kalpa-rise {
+  from {
+    opacity: 0;
+    transform: translateY(28px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes kalpa-glow {
+  from {
+    opacity: 0.35;
+  }
+  to {
+    opacity: 0.7;
+  }
+}
+
+.animate-fade {
+  animation: kalpa-fade 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-rise {
+  animation: kalpa-rise 1.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.delay-1 {
+  animation-delay: 120ms;
+}
+.delay-2 {
+  animation-delay: 240ms;
+}
+.delay-3 {
+  animation-delay: 380ms;
+}
+.delay-4 {
+  animation-delay: 520ms;
+}
+
+.gem-glow {
+  animation: kalpa-glow 4.5s ease-in-out infinite alternate;
+}
+
+.drawer-enter {
+  animation: kalpa-fade 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .animate-fade,
+  .animate-rise,
+  .gem-glow,
+  .drawer-enter {
+    animation: none !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
